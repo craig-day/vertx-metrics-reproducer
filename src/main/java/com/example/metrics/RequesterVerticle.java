@@ -5,7 +5,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.Promise;
 import io.vertx.core.http.HttpServerRequest;
 
-public class MainVerticle extends AbstractVerticle {
+public class RequesterVerticle extends AbstractVerticle {
 
   @Override
   public void start(Promise<Void> startPromise) throws Exception {

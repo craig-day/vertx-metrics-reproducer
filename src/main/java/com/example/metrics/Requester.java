@@ -10,7 +10,7 @@ import io.vertx.core.metrics.MetricsOptions;
 import io.vertx.micrometer.MicrometerMetricsOptions;
 import java.time.Duration;
 
-public class Start {
+public class Requester {
 
   public static void main(String[] args) {
     VertxOptions options = new VertxOptions()
@@ -18,7 +18,7 @@ public class Start {
 
     Vertx vertx = Vertx.vertx(options);
 
-    vertx.deployVerticle(new MainVerticle());
+    vertx.deployVerticle(new RequesterVerticle());
   }
 
   private static MetricsOptions metricsOptions() {

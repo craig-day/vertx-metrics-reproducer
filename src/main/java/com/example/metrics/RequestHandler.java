@@ -16,7 +16,7 @@ public class RequestHandler implements Handler<HttpServerRequest> {
   public RequestHandler(Vertx vertx) {
     this.webClient = WebClient.create(vertx, new WebClientOptions()
         .setDefaultHost("localhost")
-        .setDefaultPort(4242));
+        .setDefaultPort(8889));
   }
 
   @Override
