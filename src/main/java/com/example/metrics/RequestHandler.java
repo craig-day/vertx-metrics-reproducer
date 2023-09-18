@@ -29,7 +29,7 @@ public class RequestHandler implements Handler<HttpServerRequest> {
   private Future<Void> doWork() {
     return webClient
         .get("/sleep")
-        .setQueryParam("ms", String.valueOf(rand.nextInt(10, 1000)))
+        .setQueryParam("ms", String.valueOf(rand.nextInt(1000) + 10))
         .send()
         .mapEmpty();
   }
