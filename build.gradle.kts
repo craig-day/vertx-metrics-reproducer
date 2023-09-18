@@ -17,14 +17,15 @@ repositories {
 val vertxVersion = "4.4.5"
 val junitJupiterVersion = "5.9.1"
 
-val mainVerticleName = "com.example.metrics.MainVerticle"
-val launcherClassName = "io.vertx.core.Launcher"
+val reproducerMainVerticle = "com.example.metrics.MainVerticle"
+val reproducerClassName = "com.example.metrics.Requester"
+val listenerClassName = "com.example.metrics.Listener"
 
 val watchForChange = "src/**/*"
 val doOnChange = "${projectDir}/gradlew classes"
 
 application {
-  mainClass.set(launcherClassName)
+  mainClass.set(reproducerClassName)
 }
 
 dependencies {
@@ -44,7 +45,7 @@ java {
 tasks.withType<ShadowJar> {
   archiveClassifier.set("fat")
   manifest {
-    attributes(mapOf("Main-Verticle" to mainVerticleName))
+    attributes(mapOf("Main-Verticle" to reproducerMainVerticle))
   }
   mergeServiceFiles()
 }
@@ -57,5 +58,12 @@ tasks.withType<Test> {
 }
 
 tasks.withType<JavaExec> {
-  args = listOf("run", mainVerticleName, "--redeploy=$watchForChange", "--launcher-class=$launcherClassName", "--on-redeploy=$doOnChange")
+  args = listOf("run", reproducerMainVerticle, "--redeploy=$watchForChange", "--launcher-class=$reproducerClassName", "--on-redeploy=$doOnChange")
+}
+
+tasks.register("runListener", JavaExec::class) {
+  group = "Execution"
+  description = "Run the listener server"
+  classpath = sourceSets.main.get().runtimeClasspath
+  mainClass.set(listenerClassName)
 }

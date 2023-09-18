@@ -26,7 +26,7 @@ public class Requester {
     LoggingRegistryConfig config = new LoggingRegistryConfig() {
       @Override
       public Duration step() {
-        return Duration.ofSeconds(5);
+        return Duration.ofSeconds(10);
       }
 
       @Override

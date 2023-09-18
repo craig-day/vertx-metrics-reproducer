@@ -4,21 +4,21 @@ image:https://img.shields.io/badge/vert.x-4.4.5-purple.svg[link="https://vertx.i
 
 This application was generated using http://start.vertx.io
 
-== Building
+== Running the reproducer
 
-To launch your tests:
+Start the listener server to respond to we client requests:
 ```
-./gradlew clean test
-```
-
-To package your application:
-```
-./gradlew clean assemble
+./gradlew clean runListener
 ```
 
-To run your application:
+With that running, start the reproducer server:
 ```
-./gradlew clean run
+./gradle clean run
+```
+
+Make a request to the reproducer:
+```
+curl localhost:8888
 ```
 
 == Help
